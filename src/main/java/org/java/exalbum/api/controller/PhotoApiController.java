@@ -35,7 +35,7 @@ public class PhotoApiController {
 	@GetMapping("photos/filter")
 	public ResponseEntity<List<Photo>> apiFilterByTitle(@RequestParam(required = false) String title) {
 
-		List<Photo> photos = photoService.findByTitle(title);
+		List<Photo> photos = photoService.findByTitleContainingAndVisibleTrue(title);
 
 		if (photos.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

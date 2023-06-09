@@ -38,6 +38,10 @@ public class PhotoService {
 		return photoRepo.findByVisibleTrue();
 	}
 	
+	public List<Photo> findByTitleContainingAndVisibleTrue(String title){
+		return photoRepo.findByTitleContainingAndVisibleTrue(title);
+	}
+	
 	public void delete(Photo photo) {
 		
 		photoRepo.delete(photo);
