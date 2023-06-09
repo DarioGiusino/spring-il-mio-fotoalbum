@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>PhotoAlbum</title>
+	</head>
+	<body>
+		<main style="margin: 50px;">
+			<h1 style="text-align: center;">Categorie (create)</h1>
+			
+			<form th:action="@{/categories/store}" method="POST">
+						
+				<label for="category-name">Nome categoria</label>
+				<input id="category-name" type="text" name="name">
+				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('name')}">
+					[[ ${errors.getFieldError('name').defaultMessage} ]]
+				</label>
+				
+				<br>
+				
+				<button>Crea nuova categoria!</button>
+			</form>
+		</main>
+	</body>
+</html>

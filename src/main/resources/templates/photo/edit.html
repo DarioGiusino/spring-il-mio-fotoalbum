@@ -5,10 +5,10 @@
 		<title>PhotoAlbum</title>
 	</head>
 	<body>
-		<main style="margin: 50px;">
+		<main style="margin: 50px;" th:object="${photo}">
 			<h1 style="text-align: center;">Photo Album (create)</h1>
 			
-			<form th:action="@{photo/store}" method="POST">
+			<form th:action="@{/photo/update/{id} (id=*{id})}" method="POST">
 				<label for="photo-title">Titolo foto</label>
 				<input id="photo-title" type="text" name="title" th:value="*{title}">
 				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('title')}">
@@ -28,7 +28,7 @@
 				<br>
 				
 				<label for="photo-visible">Visbilità foto</label>
-				<input id="photo-visible" type="checkbox" name="visible" th:value="*{visible}">
+				<input id="photo-visible" type="checkbox" name="visible" th:checked="*{visible}">
 				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('visible')}">
 					[[ ${errors.getFieldError('visible').defaultMessage} ]]
 				</label>

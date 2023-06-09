@@ -84,6 +84,8 @@ public class PhotoController {
 			return "photo/create";
 		}
 		
+		if(photo.isVisible() == null) photo.setVisible(false);
+		
 		photoService.save(photo);
 		
 		return "redirect:/";
@@ -112,6 +114,8 @@ public class PhotoController {
 			
 			return "photo/edit";
 		}
+		
+		if(photo.isVisible() == null) photo.setVisible(false);
 		
 		photoService.save(photo);
 		

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>PhotoAlbum</title>
+	</head>
+	<body>
+		<main style="margin: 50px;">
+			<h1 style="text-align: center;">Categorie delle Foto</h1>
+			
+			<a style="color: green; margin-bottom: 20px; display: inline-block;" th:href="@{/categories/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova categoria</a>
+			
+			<div th:if="${categories.size() == 0}">
+				Non ci sono categorie qui.
+			</div>
+			
+			<ul th:if="${categories.size() > 0}">
+				<li th:each="category : ${categories}" th:object="${category}">
+					[[ *{name} ]] <a th:href="@{/categories/delete/{id} (id = *{id})}" sec:authorize="hasAuthority('ADMIN')">DELETE</a>
+				</li>				
+			</ul>
+		</main>
+	</body>
+</html>

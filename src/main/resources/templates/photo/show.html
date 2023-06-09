@@ -16,7 +16,7 @@
 				<div th:if="${categories.size() > 0}">
 					<h2>Categorie:</h2>
 					
-					<a style="color: green;" th:href="@{categories/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova categoria</a>
+					<a style="color: green;" th:href="@{/categories/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova categoria</a>
 					
 					<ul>
 						<li style="margin-bottom: 10px;" th:each="category : ${categories}" th:object="${category}">

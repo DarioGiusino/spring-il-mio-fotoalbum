@@ -8,7 +8,7 @@
 		<main style="margin: 50px;">
 			<h1 style="text-align: center;">Photo Album (create)</h1>
 			
-			<form th:action="@{photo/store}" method="POST">
+			<form th:action="@{/photo/store}" method="POST">
 				<label for="photo-title">Titolo foto</label>
 				<input id="photo-title" type="text" name="title">
 				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('title')}">

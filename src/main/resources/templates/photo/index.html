@@ -12,13 +12,13 @@
 			</div>
 			
 			
-			<form style="margin-bottom: 20px; display: inline-block;" th:action="@{photo/filter}" method="POST">
+			<form style="margin-bottom: 20px; display: inline-block;" th:action="@{/photo/filter}" method="POST">
 				<label for="photo-title">Nome photo</label>
 				<input id="photo-title" type="text" name="title" th:value="${title}">
 				<button>Filtra</button>
 			</form>
 			
-			<a style="color: green; margin-left: 20px;" th:href="@{photo/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova foto</a>
+			<a style="color: green; margin-left: 20px;" th:href="@{/photo/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova foto</a>
 			
 			<a style="color: purple; margin-left: 20px;" th:href="@{/categories}" sec:authorize="hasAuthority('ADMIN')">VEDI CATEGORIE</a>
 			
@@ -27,9 +27,9 @@
 			</div>
 			
 			<div style="margin-bottom: 10px;" th:if="${photos.size() > 0}" th:each="photo : ${photos}" th:object="${photo}">
-				<a th:href="@{photo/{id} (id=*{id})}">[[ *{title} ]]</a>
-				<a style="margin-left: 5px;" th:href="@{photo/delete/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">DELETE</a>
-				<a style="margin-left: 5px;" th:href="@{photo/edit/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">EDIT</a>
+				<a th:href="@{/photo/{id} (id=*{id})}">[[ *{title} ]]</a>
+				<a style="margin-left: 5px;" th:href="@{/photo/delete/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">DELETE</a>
+				<a style="margin-left: 5px;" th:href="@{/photo/edit/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">EDIT</a>
 			</div>
 		</main>
 	</body>
