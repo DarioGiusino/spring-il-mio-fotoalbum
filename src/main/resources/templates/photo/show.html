@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>PhotoAlbum</title>
+	</head>
+	<body>
+		<main style="margin: 50px;">
+			<h1 style="text-align: center;">Photo Album (show)</h1>
+	
+			<section th:object="${photo}">
+				<h2>[[*{title}]]</h2>
+				<p>[[*{description}]]</p>
+				<img width="200px" alt="photo-img" th:src="@{*{url}}">
+								
+				<div th:if="${categories.size() > 0}">
+					<h2>Categorie:</h2>
+					
+					<a style="color: green;" th:href="@{categories/create}" sec:authorize="hasAuthority('ADMIN')">Crea nuova categoria</a>
+					
+					<ul>
+						<li style="margin-bottom: 10px;" th:each="category : ${categories}" th:object="${category}">
+							<h3>[[*{name}]]</h3>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

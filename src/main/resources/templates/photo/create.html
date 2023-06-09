@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>PhotoAlbum</title>
+	</head>
+	<body>
+		<main style="margin: 50px;">
+			<h1 style="text-align: center;">Photo Album (create)</h1>
+			
+			<form th:action="@{photo/store}" method="POST">
+				<label for="photo-title">Titolo foto</label>
+				<input id="photo-title" type="text" name="title">
+				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('title')}">
+					[[ ${errors.getFieldError('title').defaultMessage} ]]
+				</label>
+				
+				<br>
+				
+				<label for="photo-description">Descrizione foto</label>
+				<textarea id="photo-description" rows="10" cols="20" name="description"></textarea>
+				
+				<br>
+				
+				<label for="photo-url">Foto pizza</label>
+				<input id="photo-url" type="url" name="url">
+				
+				<br>
+				
+				<label for="photo-visible">Visbilità foto</label>
+				<input id="photo-visible" type="checkbox" name="visible">
+				<label style="color: red" th:if="${errors != null && errors.hasFieldErrors('visible')}">
+					[[ ${errors.getFieldError('visible').defaultMessage} ]]
+				</label>
+				
+				<br>
+				
+				<div th:each="category : ${categories}" th:object="${category}">
+					<input th:id="${'category-' + category.id}" type="checkbox" th:value="*{id}" name="categories">
+					<label th:id="${'category-' + category.id}">[[ *{name} ]]</label>
+				</div>
+				
+				<br>
+				
+				<button>Crea nuova foto!</button>
+			</form>
+		</main>
+	</body>
+</html>
