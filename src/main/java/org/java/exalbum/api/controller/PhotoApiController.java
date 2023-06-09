@@ -23,7 +23,7 @@ public class PhotoApiController {
 	@GetMapping("photos")
 	public ResponseEntity<List<Photo>> apiIndex() {
 
-		List<Photo> photos = photoService.findAll();
+		List<Photo> photos = photoService.findByVisibleTrue();
 
 		if (photos.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
