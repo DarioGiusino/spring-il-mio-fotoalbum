@@ -9,7 +9,9 @@ export default {
   data() {
     return {
       photos: null,
-      searchTerm: ""
+      searchTerm: "",
+      email: "",
+      message: ""
     }
   },
 
@@ -33,6 +35,25 @@ export default {
       }).catch(e => {
         console.log(e);
       })
+    },
+
+    sendMessage(emailForm, messageFrom) {
+
+      const json = JSON.stringify({ email: emailForm, message: messageFrom })
+
+      const customConfig = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      axios.post("http://localhost:8080/api/v1/contact/store", json, customConfig)
+        .then(res => {
+          console.log(res.data);
+        }).catch(e => { console.log(e); })
+
+      this.email = "";
+      this.message = "";
     }
 
   },
@@ -71,6 +92,24 @@ export default {
     <ul class="list-group list-group-flush">
       <PhotoComp v-for="photo in photos" :photo="photo" :key="photo.id" />
     </ul>
+
+    <!-- contact form -->
+    <section>
+      <!-- section title -->
+      <h3 class="text-center my-3">Contattaci!</h3>
+      <!-- email form -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" v-model="email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <!-- textarea form -->
+      <div class="form-floating mb-3">
+        <textarea class="form-control" id="floatingTextarea2" style="height: 100px" v-model="message"></textarea>
+        <label for="floatingTextarea2">Message</label>
+      </div>
+      <button @click="sendMessage(email, message)" class="btn btn-primary">Submit</button>
+    </section>
   </main>
 </template>
 
