@@ -21,11 +21,11 @@ public class AuthConfiguration {
 		return 
 			http.csrf(c -> c.disable())
 			.authorizeHttpRequests(a -> a
-			        .requestMatchers("/**").hasAuthority("ADMIN")
-//					.requestMatchers("/**").permitAll()
-			        .requestMatchers("/api/**").permitAll()
-			).formLogin(f -> f.permitAll()
-			).logout(l -> l.logoutSuccessUrl("/")
-			).build();
+					.requestMatchers("/photo/**", "/categories/**").hasAuthority("ADMIN")
+			        .requestMatchers("/api/v1/**").permitAll()
+			        .requestMatchers("/**").permitAll())
+			.formLogin(f -> f.permitAll())
+			.logout(l -> l.logoutSuccessUrl("/login"))
+			.build();
 	}
 }

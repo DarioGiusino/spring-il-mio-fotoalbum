@@ -29,7 +29,7 @@ public class CategoryController {
 	@Autowired
 	private PhotoService photoService;
 
-	@GetMapping()
+	@GetMapping
 	public String index(Model model) {
 		List<Category> categories = categoryService.findAll();
 		

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/photo")
 public class PhotoController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class PhotoController {
 		return "photo/index";
 	}
 	
-	@GetMapping("photo/{id}")
+	@GetMapping("/{id}")
 	public String show(@PathVariable("id") Integer id, Model model) {
 		
 		Optional<Photo> photoOpt = photoService.findById(id);
@@ -53,7 +53,7 @@ public class PhotoController {
 		return "photo/show";
 	}
 	
-	@PostMapping("photo/filter")
+	@PostMapping("/filter")
 	public String filterPhoto(Model model, @RequestParam(required = false) String title) {
 		
 		List<Photo> photos = photoService.findByTitle(title);
@@ -63,7 +63,7 @@ public class PhotoController {
 		return "photo/index";
 	}
 	
-	@GetMapping("photo/create")
+	@GetMapping("/create")
 	public String create(Model model) {
 		List<Category> categories = categoryService.findAll();
 		
@@ -73,7 +73,7 @@ public class PhotoController {
 		return "photo/create";
 	}
 	
-	@PostMapping("photo/store")
+	@PostMapping("/store")
 	public String store(@Valid @ModelAttribute Photo photo, BindingResult bindingResult, Model model){
 		
 		if (bindingResult.hasErrors()) {
@@ -91,7 +91,7 @@ public class PhotoController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("photo/edit/{id}")
+	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) {
 		List<Category> categories = categoryService.findAll();
 		
@@ -104,7 +104,7 @@ public class PhotoController {
 		return "photo/edit";
 	}
 	
-	@PostMapping("photo/update/{id}")
+	@PostMapping("/update/{id}")
 	public String update(@PathVariable("id") int id, @Valid @ModelAttribute Photo photo, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
@@ -122,7 +122,7 @@ public class PhotoController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("photo/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		
 		Optional<Photo> photoOpt = photoService.findById(id);
